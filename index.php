@@ -52,16 +52,15 @@ while($row=mysqli_fetch_assoc($select_all_posts)){
     <hr>
 <?php } }  ?>
 <!-- ?> -->
- 
-
-
-    
             </div>
 
             <!-- Blog Sidebar Widgets Column -->
+            <div>
+            
+
 <?php include 'includes/sidebar.php'?>
+            </div>
         </div>
         <!-- /.row -->
-    </div>
         <hr>
 <?php include 'includes/footer.php'?>
