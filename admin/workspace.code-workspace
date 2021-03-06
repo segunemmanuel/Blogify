@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\corona"
+		},
+		{
+			"path": "..\\..\\execs"
+		},
+		{
+			"path": "..\\..\\PHP"
+		},
+		{
+			"path": "..\\..\\demo"
+		},
+		{
+			"path": "..\\..\\login_auth_app"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "execs"
+	}
+}
