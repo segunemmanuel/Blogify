@@ -69,7 +69,7 @@
                         </ul>
                     </li>
                     <li class="">
-                        <a href="profile.php"><i class="fa fa-fw fa-file"></i>Profile</a>
+                        <a href="profile.php?source=<?php echo $_SESSION['username']?>" > <i class="fa fa-fw fa-file"></i>Profile</a>
                     </li>
                     
                 </ul>
