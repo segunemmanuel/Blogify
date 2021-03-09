@@ -64,7 +64,7 @@
                      <div class='huge'><?php echo $comment_counts; ?></div>
                       <div>Comments</div>
                     </div>
-                </div>
+                    </div>
             </div>
             <a href="comments.php">
                 <div class="panel-footer">
@@ -136,6 +136,28 @@
 </div>
                 <!-- /.row -->
 
+
+
+                <?php
+                
+                $query="SELECT * FROM posts WHERE post_status = 'draft' ";
+                $select_all_draft_post=mysqli_query($connection,$query);
+                $post_draft_counts=mysqli_num_rows($select_all_draft_post);
+
+
+
+                $query="SELECT * FROM comments WHERE comment_status = 'Unapproved' ";
+                $select_all_uncomments=mysqli_query($connection,$query);
+                $uncomment_counts=mysqli_num_rows($select_all_uncomments);
+                
+                $query="SELECT * FROM users WHERE user_role = 'subscriber' ";
+                $select_all_subscriber=mysqli_query($connection,$query);
+                $subscriber_counts=mysqli_num_rows($select_all_subscriber);
+                
+
+                
+                ?>
+
 <div class="row">
     
 <script type="text/javascript">
@@ -144,17 +166,30 @@
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses', 'Profit'],
-          ['2014', 1000, 400, 200],
-          ['2015', 1170, 460, 250],
-          ['2016', 660, 1120, 300],
-          ['2017', 1030, 540, 350]
+          ['Data', 'Count'],
+
+          <?php
+          $element_text=['Active posts','Draft Post','Comments','Unapproved Comments','Users','Subscribers','Categories'];
+          $element_count=[$post_counts,$post_draft_counts,$comment_counts,$uncomment_counts,$user_counts,$subscriber_counts,$cat_counts];
+          for($i=0; $i<7; $i++){
+            //   add js code
+              echo "[ '{$element_text[$i] }' ".","."{$element_count[$i]}],";
+          
+
+          }
+          
+          ?>
+
+
+
+        //   ['Posts', 1000],
+          
         ]);
 
         var options = {
           chart: {
-            title: 'Company Performance',
-            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+            title: '',
+            subtitle: '',
           }
         };
 
