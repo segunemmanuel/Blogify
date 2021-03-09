@@ -144,6 +144,12 @@
                 $select_all_draft_post=mysqli_query($connection,$query);
                 $post_draft_counts=mysqli_num_rows($select_all_draft_post);
 
+  
+                $query="SELECT * FROM posts WHERE post_status = 'published' ";
+                $select_all_pub_post=mysqli_query($connection,$query);
+                $post_pub_counts=mysqli_num_rows($select_all_pub_post);
+
+                
 
 
                 $query="SELECT * FROM comments WHERE comment_status = 'Unapproved' ";
@@ -169,9 +175,9 @@
           ['Data', 'Count'],
 
           <?php
-          $element_text=['Active posts','Draft Post','Comments','Unapproved Comments','Users','Subscribers','Categories'];
-          $element_count=[$post_counts,$post_draft_counts,$comment_counts,$uncomment_counts,$user_counts,$subscriber_counts,$cat_counts];
-          for($i=0; $i<7; $i++){
+          $element_text=['All post', 'Active posts','Draft Post','Comments','Unapproved Comments','Users','Subscribers','Categories'];
+          $element_count=[    $post_counts,   $post_pub_counts,   $post_draft_counts,$comment_counts,$uncomment_counts,$user_counts,$subscriber_counts,$cat_counts];
+          for($i=0; $i<8; $i++){
             //   add js code
               echo "[ '{$element_text[$i] }' ".","."{$element_count[$i]}],";
           

@@ -70,7 +70,7 @@ echo "<option value='{$cat_id}'>{$cat_title} </option>";
 
 <div class="form-group">
 <label for="post_content">Post Content</label>
-<textarea name="content"  cols="30" class="form-control" rows="10"></textarea>
+<textarea name="content"  id="body" cols="30" class="form-control" rows="10"></textarea>
 
 </div>
 <div class="form-group">
