@@ -19,15 +19,8 @@ while($row=mysqli_fetch_assoc($select_all_posts)){
     $post_content=substr($row['post_content'], 0, 100);
     $post_status=$row['post_status'];
 
-    if( $post_status !== 'published'){
-         "<h1 class='text-center'>No Posts here; </h1>";
+    if( $post_status == 'published'){
         
-    }
-    else{
-        
-
-
-
     ?>
 <!-- <h1 class="page-header">
                    Page Heading
