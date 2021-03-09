@@ -48,7 +48,7 @@ confirm($create_user_query);
 
 <option value="admin">Select option</option>
 <option value="admin">Admin</option>
-<option value="subscribers">Subscribers</option>
+<option value="subscriber">Subscriber</option>
 
 </select>
 
