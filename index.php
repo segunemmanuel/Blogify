@@ -49,8 +49,6 @@ while($row=mysqli_fetch_assoc($select_all_posts)){
 
             <!-- Blog Sidebar Widgets Column -->
             <div>
-            
-
 <?php include 'includes/sidebar.php'?>
             </div>
         </div>

@@ -18,7 +18,6 @@ if(isset($_GET['p_id'])){
       $post_status= $row['post_status'];
     }
 }
-
 // update posts
 if(isset($_POST['update_post'])){
     $post_title = $_POST['post_title'];
@@ -44,15 +43,10 @@ $query.="post_image='{$post_image}' ";
     $query.="WHERE post_id ={$the_post_id} ";
     $update_post=mysqli_query($connection,$query);
 confirm($update_post);
-
-
-
+echo "<p class='bg-success'> Post updated:" . " ". "<a href='../post.php?p_id={$post_id}'>View post </a>or <a href='posts.php'>Edit More post</a> </p>";
 }
 ?>
-
-
 <h1>Edit Posts</h1>
-
 <form action="" method="post" enctype="multipart/form-data">
 <div class="form-group">
 <label for="title">Post Title</label>
@@ -116,7 +110,7 @@ else{
 </div>
 <div class="form-group">
 <label for="post_content">Post Content</label>
-<textarea  name="post_content"  cols="30" class="form-control" rows="10"> <?php echo $post_content; ?>
+<textarea  id="body" name="post_content"  cols="30" class="form-control" rows="10"> <?php echo $post_content; ?>
 </textarea>
 </div>
 <div class="form-group">

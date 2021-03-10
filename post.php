@@ -88,7 +88,7 @@ while($row=mysqli_fetch_assoc($select_all_posts)){
                         </div>
                         <div class="form-group">
                             <label for="comment">Comment</label>
-                            <textarea class="form-control" name="comment_content" rows="3"></textarea>
+                            <textarea id="body" class="form-control" name="comment_content" rows="3"></textarea>
                         </div>
                         <button type="submit" name="create_comment" class="btn btn-primary">Submit</button>
                     </form>

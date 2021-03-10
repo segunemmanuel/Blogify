@@ -17,7 +17,7 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
-
+<script src="includes/home_script.js"></script>
 </body>
 
 </html>

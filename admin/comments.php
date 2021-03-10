@@ -33,7 +33,7 @@ switch($source){
 
     break;
 
-    case 'edit_posts';
+    case 'edit_comments';
     include "includes/edit_comments.php";
     
     break;

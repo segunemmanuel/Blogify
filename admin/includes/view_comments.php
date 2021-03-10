@@ -65,38 +65,19 @@ while($row=mysqli_fetch_assoc($select_comments)){
       echo "<td><a href='comments.php?unapprove=$comment_id'>Unapprove</a></td>";
       echo "<td><a href='posts.php?source=edit_comments&p_id=$comment_id'>Edit</a></td>";
       echo "<td><a href='comments.php?delete=$comment_id'>Delete</a></td>";
-
-      
-
-
-      
-
       echo "</tr>";
-
-   
-
 }
 
 ?>
 
-
-
-
 <?php
-
 if(isset($_GET['approve'])){
     $the_comment_id=$_GET['approve'];
     $query = "UPDATE comments SET comment_status = 'Approved' WHERE comment_id = $the_comment_id ";
     $approve_comment_query=mysqli_query($connection,$query);
     header("location:comments.php");exit;
-    
 }
-
-
-
-
 ?>
-
 
 <?php
 if(isset($_GET['unapprove'])){
@@ -104,8 +85,9 @@ if(isset($_GET['unapprove'])){
     $query ="UPDATE comments SET comment_status= 'Unapproved' WHERE comment_id = $the_comment_id ";
     $unapprove_comment_query=mysqli_query($connection,$query);
     header("location:comments.php");exit;
-    
 }
+
+
 
 ?>
 

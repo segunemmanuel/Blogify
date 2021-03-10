@@ -1,8 +1,59 @@
 <?php
+if(isset($_POST['checkBoxArray'])){
+foreach($_POST['checkBoxArray'] as $checkBoxValue ){
+    $bulk_options = $_POST['bulkOptions'];
+    // $post_id=$_POST['post_id'];
+switch($bulk_options){
+     
+    
+    case 'published':
+$query= "UPDATE posts SET post_status= '{$bulk_options}' WHERE post_id= {$checkBoxValue}  ";
+$update_published_status=mysqli_query($connection,$query);
+confirm($update_published_status);
+        break;
+    
+        case 'draft':
+        $query= "UPDATE posts SET post_status= '{$bulk_options}' WHERE post_id= {$checkBoxValue}  ";
+        $update_draft_status=mysqli_query($connection,$query);
+        confirm($update_draft_status);
+        break;
+
+            case 'delete':
+            $query= "DELETE FROM posts WHERE post_id = {$checkBoxValue} ";
+             $update_delete_status=mysqli_query($connection,$query);
+            confirm($update_delete_status);
+            break;
+}
+    
+}
+
+}
+
 ?>
+<form action="" method="post">
 <table class="table table-bordered table-hover table-responsive">
+<div class="row">
+
+<div id="bulkOptionContainer" class="col-xs-4"> 
+<select name="bulkOptions" class="form-control">
+<option value="">Select option</option>
+<option value="published">Publish</option>
+<option value="draft">Draft</option>
+<option value="delete">Delete</option>
+</select>
+</div>
+<div class="col-xs-4">
+<input type="submit" class="btn btn-success" value="Apply">
+<a href="add_posts.php" class="btn btn-primary" href="add_post.php">Add new</a>
+
+</div>
+
+</div>
+
+<!-- begining of table -->
 <thead>
     <tr>
+    <th> <input type="checkbox" id="selectAllBoxes">   </th>
         <th>Post id</th>
         <th>Author</th>
         <th>Title</th>
@@ -18,9 +69,6 @@
     </tr>
 </thead>
 <tbody>
-
-
-
 <?php
 $query="SELECT * FROM posts";
 $select_all_posts=mysqli_query($connection,$query);
@@ -37,6 +85,14 @@ while($row=mysqli_fetch_assoc($select_all_posts)){
       $post_status= $row['post_status'];
 
       echo "<tr>";
+
+      
+
+      ?>
+      <td> <input type='checkbox' name='checkBoxArray[]' value=<?php echo $post_id?> </td>
+
+      <?php
+      
       echo "<td>{$post_id}</td>";
       echo "<td> {$post_author}</td>";
       echo "<td>{$post_title}</td>";
@@ -79,3 +135,7 @@ if(isset($_GET['delete'])){
 
 
 ?>
+</tbody>
+</table>
+
+</form>

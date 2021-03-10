@@ -1,11 +1,5 @@
-$(document).ready(function(){
-// ck editor
-    ClassicEditor
+ClassicEditor
     .create( document.querySelector('#body'))
     .then( editor => {
         console.log( editor );
     } )
-
-})
-
-
