@@ -4,8 +4,6 @@ foreach($_POST['checkBoxArray'] as $checkBoxValue ){
     $bulk_options = $_POST['bulkOptions'];
     // $post_id=$_POST['post_id'];
 switch($bulk_options){
-     
-    
     case 'published':
 $query= "UPDATE posts SET post_status= '{$bulk_options}' WHERE post_id= {$checkBoxValue}  ";
 $update_published_status=mysqli_query($connection,$query);
@@ -85,11 +83,8 @@ while($row=mysqli_fetch_assoc($select_all_posts)){
       $post_status= $row['post_status'];
 
       echo "<tr>";
-
-      
-
       ?>
-      <td> <input type='checkbox' name='checkBoxArray[]' value=<?php echo $post_id?> </td>
+      <td> <input class="checkbox" type='checkbox' name='checkBoxArray[]' value=<?php echo $post_id?> </td>
 
       <?php
       

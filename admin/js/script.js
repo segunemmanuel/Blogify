@@ -6,6 +6,22 @@ $(document).ready(function(){
         console.log( editor );
     } )
 
+
+
+
+
+
+
 })
+
+
+$(document).ready(function)(){
+    // alert('hello');
+    $(#seletallboxes).cllick(function(event){
+        
+    
+}
+
+
 
 
