@@ -19,9 +19,36 @@ confirm($update_published_status);
              $update_delete_status=mysqli_query($connection,$query);
             confirm($update_delete_status);
             break;
+
+            case 'clone':
+                $query="SELECT * FROM posts WHERE post_id='{$checkBoxValue}' ";
+                $select_all_posts_query=mysqli_query($connection,$query);
+                while($row=mysqli_fetch_assoc($select_all_posts_query)){
+                      $post_id= $row['post_id'];
+                      $post_cat_id= $row['post_category_id'];
+                      $post_title= $row['post_title'];
+                      $post_author= $row['post_author'];
+                      $post_date= $row['post_date'];
+                      $post_image= $row['post_image'];
+                      $post_content= $row['post_content'];
+                      $post_tags= $row['post_tags'];
+                      $post_comment=$row['post_comment_count'];
+                      $post_status= $row['post_status'];
+                      }
+$query="INSERT INTO posts(post_category_id,post_title,post_author,post_date,post_image,post_content,post_tags,post_status) ";
+$query.="VALUES ({$post_cat_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}','{$post_status}') ";
+
+$copy_query=mysqli_query($connection,$query);
+header("Location: posts.php");
+if(!$copy_query){
+    die("error".mysqli_error($connection));
+}
+                break;
+
+}     
 }
 }
-}
+
 ?>
 <form action="" method="post">
 <table class="table table-bordered table-hover table-responsive">
@@ -32,6 +59,8 @@ confirm($update_published_status);
 <option value="published">Publish</option>
 <option value="draft">Draft</option>
 <option value="delete">Delete</option>
+<option value="clone">Clone</option>
+
 </select>
 </div>
 <div class="col-xs-4">
@@ -60,7 +89,7 @@ confirm($update_published_status);
 </thead>
 <tbody>
 <?php
-$query="SELECT * FROM posts";
+$query="SELECT * FROM posts ORDER BY post_id DESC ";
 $select_all_posts=mysqli_query($connection,$query);
 while($row=mysqli_fetch_assoc($select_all_posts)){
       $post_id= $row['post_id'];
