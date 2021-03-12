@@ -14,9 +14,10 @@ if(isset($_POST['create_post'])){
 
 $query="INSERT INTO posts(post_category_id,post_title,post_author,post_date,post_image,post_content,post_tags,post_status) ";
 $query.="VALUES ({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tag}','{$post_status}') ";
-
 $create_posts_query=mysqli_query($connection,$query);
 confirm($create_posts_query);
+$post_id= mysqli_insert_id($connection );
+echo "<p class='bg-success'> Post updated:" . " ". "<a href='../post.php?p_id={$post_id}'>View post </a>or <a href='posts.php'>Edit More post</a> </p>";
 }
  ?>
 <form action="" method="post" enctype="multipart/form-data">
@@ -56,7 +57,12 @@ echo "<option value='{$cat_id}'>{$cat_title} </option>";
 </div>
 <div class="form-group">
 <label for="post_status">Post Status</label>
-<input type="text" class="form-control" name="post_status">
+<!-- <input type="text" cl?ass="form-control" name="post_status"> -->
+<select name="post_status" id="" class="form-control">
+<option value="draft">Select Options</option>
+<option value="draft">Draft</option>
+<option value="published">Publish</option>
+</select>
 </div>
 
 <div class="form-group">

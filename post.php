@@ -52,6 +52,7 @@ while($row=mysqli_fetch_assoc($select_all_posts)){
 
       <?php
       if(isset($_POST['create_comment'])){
+        
           $post_id=$_GET['p_id'];
           $comment_author=$_POST['comment_author'];
           $comment_email=$_POST['comment_email'];
