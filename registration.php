@@ -3,7 +3,6 @@
     <?php  include "includes/navbar.php"; ?>
     
  <?php
-
 if(isset($_POST['submit'])){
 // $_POST[]
 $username=$_POST['username'];
@@ -12,18 +11,17 @@ $email=$_POST['email'];
 $username=mysqli_real_escape_string($connection,$username);
 $password=mysqli_real_escape_string($connection,$password);
 echo $username;
-
-
-    
+$query="SELECT randSalt FROM users";
+$select_randsalt_query=mysqli_query($connection,$query);
+if(!$select_randsalt_query){
+    die("error".mysqli_error($connection));
 }
-
-
+while($row=mysqli_fetch_array($select_randsalt_query)){
+echo $salt=$row['randSalt'];
+}
+}
 ?>
-
-
-
- 
-    <!-- Page Content -->
+<!-- Page Content -->
     <div class="container">
 <section id="login">
     <div class="container">
