@@ -1,24 +1,42 @@
  <?php include 'includes/header.php'?>
     <!-- Navigation -->
     <?php  include "includes/navbar.php"; ?>
-    
  <?php
 if(isset($_POST['submit'])){
 // $_POST[]
 $username=$_POST['username'];
 $password=$_POST['password'];
 $email=$_POST['email'];
-$username=mysqli_real_escape_string($connection,$username);
-$password=mysqli_real_escape_string($connection,$password);
-echo $username;
-$query="SELECT randSalt FROM users";
-$select_randsalt_query=mysqli_query($connection,$query);
-if(!$select_randsalt_query){
+if(!empty($username) && !empty($email) && !empty($password)){
+    $username=mysqli_real_escape_string($connection,$username);
+    $password=mysqli_real_escape_string($connection,$password);
+    $query="SELECT randSalt FROM users";
+    $select_randsalt_query=mysqli_query($connection,$query);
+    if(!$select_randsalt_query){
     die("error".mysqli_error($connection));
 }
-while($row=mysqli_fetch_array($select_randsalt_query)){
-echo $salt=$row['randSalt'];
+$row=mysqli_fetch_array($select_randsalt_query);
+$salt=$row['randSalt'];
+$password=crypt($password,$salt);
+
+
+
+// query for inserting into db table'
+$query= "INSERT INTO users (username, user_email, user_password, user_role) ";
+$query.= "VALUES ('{$username}','{$email}','{$password}', 'subscriber' ) ";
+$register_query=mysqli_query($connection,$query);
+if(!$register_query){
+    die("error". mysqli_error($connection) . ' ' .
+    mysqli_errno($connection));
 }
+$msg="Your Registration has been submitted";
+}
+else{
+    $msg="Fields cannot be empty";
+}
+
+}else{
+    $msg= ' ';
 }
 ?>
 <!-- Page Content -->
@@ -30,9 +48,10 @@ echo $salt=$row['randSalt'];
                 <div class="form-wrap">
                 <h1>Register</h1>
                     <form role="form" action="registration.php" method="post" id="login-form" autocomplete="off">
+                    <h6 class="text-center"><?php echo $msg; ?></h6>
                         <div class="form-group">
                             <label for="username" class="sr-only">username</label>
-                            <input type="text" name="username" id="username" class="form-control" placeholder="Enter Desired Username">
+                            <input type="text" name="username" id="username" class="form-control" placeholder="Enter Desired Username"||<?php echo $msg?>>
                         </div>
                          <div class="form-group">
                             <label for="email" class="sr-only">Email</label>

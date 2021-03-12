@@ -34,6 +34,10 @@
                     <li class="navbar-link">
                         <a href="admin/index.php">Admin</a>
                     </li>
+
+                    <li class="navbar-link">
+                        <a href="registration.php">Register</a>
+                    </li>
 <?php
 
 if(isset($_SESSION['user_email'])){
