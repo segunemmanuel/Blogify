@@ -102,6 +102,8 @@ while($row=mysqli_fetch_assoc($select_all_posts)){
       $post_tags= $row['post_tags'];
       $post_comment=$row['post_comment_count'];
       $post_status= $row['post_status'];
+      $post_views= $row['post_views'];
+      
       echo "<tr>";
       ?>
       <td> <input class="checkbox" type='checkbox' name='checkBoxArray[]' value=<?php echo $post_id?> </td>
@@ -125,6 +127,8 @@ while($row=mysqli_fetch_assoc($select_all_posts)){
       echo "<td><a href='../post.php?p_id=$post_id'>View Post</a></td>";
       echo "<td><a href='posts.php?source=edit_posts&p_id=$post_id'>Edit</a></td>";
       echo "<td><a onClick=\"javascript:return confirm('Are You sure you want to delete');\" href='posts.php?delete=$post_id'> Delete</a></td>";
+      echo "<td>{$post_views}</td>";
+      
       echo "</tr>";
 }
 ?>
