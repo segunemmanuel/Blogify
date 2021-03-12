@@ -9,13 +9,11 @@ $query= "UPDATE posts SET post_status= '{$bulk_options}' WHERE post_id= {$checkB
 $update_published_status=mysqli_query($connection,$query);
 confirm($update_published_status);
         break;
-    
         case 'draft':
         $query= "UPDATE posts SET post_status= '{$bulk_options}' WHERE post_id= {$checkBoxValue}  ";
         $update_draft_status=mysqli_query($connection,$query);
         confirm($update_draft_status);
         break;
-
             case 'delete':
             $query= "DELETE FROM posts WHERE post_id = {$checkBoxValue} ";
              $update_delete_status=mysqli_query($connection,$query);
@@ -28,7 +26,6 @@ confirm($update_published_status);
 <form action="" method="post">
 <table class="table table-bordered table-hover table-responsive">
 <div class="row">
-
 <div id="bulkOptionContainer" class="col-xs-4"> 
 <select name="bulkOptions" class="form-control">
 <option value="">Select option</option>
@@ -89,7 +86,6 @@ while($row=mysqli_fetch_assoc($select_all_posts)){
                 $cat_id= $row['cat_id'];
                 $cat_title= $row['cat_title'];
       echo "<td>{$cat_title}</td>";
-
      }
       echo "<td>{$post_status} </td>";
       echo "<td> <img src='../images/$post_image' width='90px'alt='ímg'></td>";
@@ -99,7 +95,7 @@ while($row=mysqli_fetch_assoc($select_all_posts)){
       echo "<td> {$post_date}</td>";
       echo "<td><a href='../post.php?p_id=$post_id'>View Post</a></td>";
       echo "<td><a href='posts.php?source=edit_posts&p_id=$post_id'>Edit</a></td>";
-      echo "<td><a href='posts.php?delete=$post_id'> Delete</a></td>";
+      echo "<td><a onClick=\"javascript:return confirm('Are You sure you want to delete');\" href='posts.php?delete=$post_id'> Delete</a></td>";
       echo "</tr>";
 }
 ?>

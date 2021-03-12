@@ -61,40 +61,26 @@ echo "<p><a href='users.php?source=view_users'>User updated successfully</a></p>
 <label for="post_author">Firstname</label>
 <input type="text" class="form-control" value="<?php echo $user_firstname?>" name="user_firstname" required>
 </div>
-
 <div class="form-group">
 <label for="post_status">Lastname</label>
 <input type="text" class="form-control"  value="<?php echo $user_lastname?>"name="user_lastname" required>
 </div>
-
-
 <!-- category -->
-
 <div class="form-group">
 <label for="post_category">User role</label>
 <select name="user_role" id="" class="form-control">
-<option value="subscriber"><?php echo $user_role;?></option>
+<option value="<?php echo $user_role;?>"><?php echo $user_role;?></option>
 <?php
-if($user_role == 'Admin'){
+if($user_role == 'admin'){
 echo "<option value='subscriber'>subscriber</option>";
 }
 else {
 echo "<option value='admin'>admin</option>";
-
 }
-
 ?>
-
-
-
 </select>
-
 </div>
-
 <!-- end -->
-
-
-
 <!-- <div class="form-group">
 <label for="post_image">Post image</label>
 <input type="file"  name="post_image">
