@@ -5,7 +5,7 @@ if(isset($_POST['login'])){
   $username= $_POST['username'];
   $password= $_POST['password'];
   
-  $suername=mysqli_real_escape_string($connection,$username);
+  $userrname=mysqli_real_escape_string($connection,$username);
   $password=mysqli_real_escape_string($connection,$password);
 
 $query="SELECT * FROM users WHERE username='{$username}' ";
@@ -25,6 +25,8 @@ while($row=mysqli_fetch_array($select_user_query)){
 
 
 }
+
+$password=crypt($password,$db_user_password);
 // lOGIN VALIDATION
 if($username === $db_username && $password === $db_user_password){
     $_SESSION['username']=$db_username;
