@@ -27,6 +27,17 @@ if(isset($_POST['update_user'])){
     $user_email = $_POST['user_email'];
     $user_password = $_POST['user_password'];
 
+
+$query="SELECT randSalt FROM users ";
+$select_randsalt_query=mysqli_query($connection,$query);
+if(!$select_randsalt_query){
+    die("Failed query".mysqli_error($connection));
+}
+
+$row=mysqli_fetch_array($select_randsalt_query);
+$salt=$row['randSalt'];
+$hashed_password=crypt($user_password, $salt);
+    
     // query statement
     
 $query="UPDATE users SET ";
@@ -35,26 +46,17 @@ $query.="user_lastname= '{$user_lastname}', ";
 $query.="user_role='{$user_role}', ";
 $query.="username='{$username}', ";
 $query.="user_email= '{$user_email}', ";
-$query.="user_password= '{$user_password}' ";
+$query.="user_password= '{$hashed_password}' ";
 $query.="WHERE user_id ={$the_user_id} ";
 $update_user_query=mysqli_query($connection,$query);
 confirm($update_user_query);
-
 $create_user_query=mysqli_query($connection,$query);
 confirm($create_user_query);
+echo "<p><a href='users.php?source=view_users'>User updated successfully</a></p>";
 }
  ?>
-
-
-
-
-
- 
 <!-- html form start -->
 <form action="" method="post" enctype="multipart/form-data">
-
-
-
 <div class="form-group">
 <label for="post_author">Firstname</label>
 <input type="text" class="form-control" value="<?php echo $user_firstname?>" name="user_firstname" required>
