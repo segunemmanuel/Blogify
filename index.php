@@ -8,6 +8,13 @@
 
 <?php
 
+$select_all_post_query_count="SELECT * FROM posts";
+$find_counts=mysqli_query($connection,$select_all_post_query_count);
+$count=mysqli_num_rows($find_counts);
+$count =ceil($count/5);
+
+
+
 $query="SELECT * FROM posts" ;
 $select_all_posts=mysqli_query($connection,$query);
 while($row=mysqli_fetch_assoc($select_all_posts)){
@@ -22,11 +29,10 @@ while($row=mysqli_fetch_assoc($select_all_posts)){
     if( $post_status == 'published'){
         
     ?>
-<!-- <h1 class="page-header">
-                   Page Heading
-                    <small>Secondary Text</small>
-                </h1> -->
-                <!-- First Blog Post -->
+
+
+    <!-- first blog post -->
+    <h1><?php echo $count?></h1>
                 <h2>
                     <a href="post.php?p_id=<?php echo $post_id ?>"><?php echo $post_title?></a>
                 </h2>
@@ -56,6 +62,14 @@ while($row=mysqli_fetch_assoc($select_all_posts)){
 <?php include 'includes/sidebar.php'?>
             </div>
         </div>
-        <!-- /.row -->
+        <!-- /.row --> 
         <hr>
+    </div>
+    <ul class="pager">
+    <?php
+for($i=1; $i <= $count; $i++){
+    echo "<li><a href='index.php?page={$i}'>{$i}</a> </li>";
+}
+    ?>
+</ul>
 <?php include 'includes/footer.php'?>
