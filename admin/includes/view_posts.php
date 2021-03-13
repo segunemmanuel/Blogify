@@ -127,7 +127,7 @@ while($row=mysqli_fetch_assoc($select_all_posts)){
       echo "<td><a href='../post.php?p_id=$post_id'>View Post</a></td>";
       echo "<td><a href='posts.php?source=edit_posts&p_id=$post_id'>Edit</a></td>";
       echo "<td><a onClick=\"javascript:return confirm('Are You sure you want to delete');\" href='posts.php?delete=$post_id'> Delete</a></td>";
-      echo "<td>{$post_views}</td>";
+      echo "<td><a href='posts.php?update_view=$post_id'>{$post_views}</a></td>";
       
       echo "</tr>";
 }
@@ -140,6 +140,18 @@ if(isset($_GET['delete'])){
     header("location:posts.php");exit;
 }
 ?>
+
+<?php
+if(isset($_GET['update_view'])){
+    $the_post_id=$_GET['update_view'];
+    $query ="UPDATE posts SET post_views= 0 WHERE post_id = $the_post_id ";
+    $update_post_query=mysqli_query($connection,$query);
+    header("location:posts.php");exit;
+}
+?>
+
+
+
 </tbody>
 </table>
 </form>
