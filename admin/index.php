@@ -17,10 +17,8 @@ else{
 }
 $user_online_query= mysqli_query($connection, "SELECT * FROM users_online WHERE time > '$time_out' ");
 $count_user= mysqli_num_rows($user_online_query);
+
 ?>
-
-
-
         <!-- Navigation -->
         <?php include 'includes/navigation.php'?>
         <div id="page-wrapper">
@@ -32,7 +30,6 @@ $count_user= mysqli_num_rows($user_online_query);
                             Welcome to admin
                             <small><?php echo $_SESSION['username'];?></small>
                         </h1>
-                        <h1> <?php echo $count_user; ?> </h1>
                     </div>
                 </div>
                 <!-- /.row -->
