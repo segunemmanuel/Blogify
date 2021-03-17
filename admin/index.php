@@ -18,6 +18,7 @@ else{
 $user_online_query= mysqli_query($connection, "SELECT * FROM users_online WHERE time > '$time_out' ");
 $count_user= mysqli_num_rows($user_online_query);
 
+
 ?>
         <!-- Navigation -->
         <?php include 'includes/navigation.php'?>
