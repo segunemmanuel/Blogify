@@ -1,6 +1,30 @@
 <?php
 
 
+function show_users_online(){
+    global $connection;
+    // find out how many users are presently logged in!
+$session= session_id();
+$time=time();
+$time_out_in_seconds = 60;
+$time_out = $time - $time_out_in_seconds;
+$query="SELECT * FROM users_online WHERE session ='$session'" ;
+$send_query=mysqli_query($connection,$query);
+$count=mysqli_num_rows($send_query);
+if($count == NULL){
+    mysqli_query($connection, "INSERT INTO users_online(session,time) VALUES('$session', '$time')");
+}
+else{
+    mysqli_query($connection, "UPDATE users_online SET time='$time'  WHERE session = '$session' ");
+}
+$user_online_query= mysqli_query($connection, "SELECT * FROM users_online WHERE time > '$time_out' ");
+return $count_user= mysqli_num_rows($user_online_query);
+
+// echo $count_user;
+}
+
+
+
 
 function confirm($result){
 global $connection;
